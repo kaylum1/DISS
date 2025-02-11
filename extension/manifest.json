@@ -1,0 +1,37 @@
+{
+    "manifest_version": 3,
+    "name": "HTTPS Scanner",
+    "version": "1.0",
+    "description": "Automatically logs URLs and checks if the page uses HTTPS.",
+    "permissions": [
+      "tabs",
+      "activeTab",
+      "scripting",
+      "storage",
+      "webNavigation"
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_title": "HTTPS Scanner"
+    },
+    "host_permissions": [
+      "http://localhost:5000/*"
+    ],
+
+    "web_accessible_resources": [
+    {
+      "resources": [
+        "popup.html",
+        "security.html",
+        "privacy.html",
+        "security.js",
+        "privacy.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+  }
+  
