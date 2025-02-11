@@ -51,17 +51,48 @@
         color: red;
         font-weight: bold;
     }
+    .scan-item {
+    margin-bottom: 10px;
+    }
+
+    .scan-header {
+        font-size: 16px;
+        cursor: pointer;
+        background: #e3e3e3;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .scan-header:hover {
+        background: #d1d1d1;
+    }
+
+    .scan-details {
+        margin-left: 10px;
+        padding: 5px;
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .low-score-message {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    }
+
 
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>Security Scan Info</h1>
-      <ul id="securityList">
-        <!-- Security scan details will be inserted here -->
-      </ul>
-      <a href="popup.html" class="back-btn">Back</a>
+        <h1>Security Scan Info</h1>
+        <div id="securityList"></div>
+        <button id="backBtn" class="back-btn">Back</button>
     </div>
     <script src="security.js"></script>
+    
   </body>
 </html>
