@@ -33,37 +33,50 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 
   // extension/popup.js
-document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get('lastScan', function (data) {
       const scoreCircle = document.getElementById('scoreCircle');
-      if (data.lastScan && data.lastScan.final_score !== undefined) {
-        const finalScore = data.lastScan.final_score;
-        scoreCircle.textContent = finalScore;
-        // Set circle color based on score:
-        // Score >= 8: green; 5-7: amber; below 5: red.
-        let bgColor;
-        if (finalScore >= 8) {
-          bgColor = '#4CAF50'; // green
-        } else if (finalScore >= 5) {
-          bgColor = '#FFC107'; // amber
+      const urlText = document.getElementById('urlText');
+
+      if (data.lastScan) {
+        // Update URL text
+        if (data.lastScan.url) {
+          urlText.textContent = `URL: ${data.lastScan.url}`;
         } else {
-          bgColor = '#F44336'; // red
+          urlText.textContent = "URL: Not available";
         }
-        scoreCircle.style.backgroundColor = bgColor;
+
+        // Update score display
+        if (data.lastScan.final_score !== undefined) {
+          const finalScore = data.lastScan.final_score;
+          scoreCircle.textContent = finalScore;
+
+          // Set circle color based on score:
+          let bgColor;
+          if (finalScore >= 8) {
+            bgColor = '#4CAF50'; // green
+          } else if (finalScore >= 5) {
+            bgColor = '#FFC107'; // amber
+          } else {
+            bgColor = '#F44336'; // red
+          }
+          scoreCircle.style.backgroundColor = bgColor;
+        } else {
+          scoreCircle.textContent = '--';
+        }
       } else {
+        urlText.textContent = "URL: Not available";
         scoreCircle.textContent = '--';
       }
     });
-  
+
     // Navigate to the detailed pages on button clicks.
     document.getElementById('securityBtn').addEventListener('click', function () {
       window.location.href = 'security.html';
     });
-  
+
     document.getElementById('privacyBtn').addEventListener('click', function () {
       window.location.href = 'privacy.html';
     });
-  });
-  
-  
+});
   
