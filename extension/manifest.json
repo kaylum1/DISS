@@ -28,7 +28,8 @@
         "security.html",
         "privacy.html",
         "security.js",
-        "privacy.js"
+        "privacy.js",
+        "info_pages/*.html"
       ],
       "matches": ["<all_urls>"]
     }

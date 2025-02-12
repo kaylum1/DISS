@@ -1,4 +1,3 @@
-// extension/privacy.js
 document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get('lastScan', function (data) {
         const container = document.getElementById('privacyList');
@@ -47,12 +46,24 @@ document.addEventListener('DOMContentLoaded', function () {
                             explanation.classList.add('low-score-message');
                             explanation.textContent = explanations[scan.name] || "This issue may pose a privacy risk.";
 
-                            scanDetails.appendChild(explanation); // Append explanation **after** result text
+                            scanDetails.appendChild(explanation);
+
+                            // **ADD "MORE INFO" BUTTON BELOW EXPLANATION**
+                            let moreInfoButton = document.createElement("button");
+                            moreInfoButton.textContent = "More Info";
+                            moreInfoButton.classList.add("more-info-btn");
+
+                            // Open static HTML page in a new tab
+                            moreInfoButton.addEventListener("click", function () {
+                                chrome.tabs.create({ url: chrome.runtime.getURL("info_pages/" + scan.name.replace(/ /g, "_") + ".html") });
+                            });
+
+                            scanDetails.appendChild(moreInfoButton);
                         }
                     }
 
-                    scanHeader.addEventListener('click', function () {
-                        scanDetails.classList.toggle('hidden');
+                    scanHeader.addEventListener("click", function () {
+                        scanDetails.classList.toggle("hidden");
                     });
 
                     scanItem.appendChild(scanHeader);
