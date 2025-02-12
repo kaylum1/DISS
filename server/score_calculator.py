@@ -23,16 +23,3 @@ def calculate_final_score(*scan_results):
         return round(average, 1)
     else:
         return 0
-'''
-# For quick testing:
-if __name__ == "__main__":
-    # Example scan strings:
-    s1 = "HTTPS Scan score: 10/10 (Secure)"
-    s2 = "Security Headers score: 8/10 (HSTS present; CSP missing)"
-    s3 = "Cookie Security Check score: 9/10 (Cookies are Secure)"
-    s4 = "XSS Scan score: 7/10 (No vulnerabilities)"
-    s5 = "SQL Injection Scan score: 6/10 (No SQL injection vulnerabilities found)"
-    # ... etc.
-    final = calculate_final_score(s1, s2, s3, s4, s5)
-    print("Final score:", final)
-'''
