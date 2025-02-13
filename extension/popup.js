@@ -1,82 +1,62 @@
-/*
-// extension/popup.js
-document.addEventListener('DOMContentLoaded', function () {
-    chrome.storage.local.get('lastScan', function (data) {
-      const resultDiv = document.getElementById('result');
-      if (data.lastScan) {
-        const s = data.lastScan;
-        let text = `URL: ${s.url}\n\n`;
-        text += "Security Scans:\n";
-        text += `${s.sec_scan1_name} = ${s.sec_scan1_result}\n`;
-        text += `${s.sec_scan2_name} = ${s.sec_scan2_result}\n`;
-        text += `${s.sec_scan3_name} = ${s.sec_scan3_result}\n`;
-        text += `${s.sec_scan4_name} = ${s.sec_scan4_result}\n`;
-        text += `${s.sec_scan5_name} = ${s.sec_scan5_result}\n`;
-        text += `${s.sec_scan6_name} = ${s.sec_scan6_result}\n`;
-        text += `${s.sec_scan7_name} = ${s.sec_scan7_result}\n`;
-        text += `${s.sec_scan8_name} = ${s.sec_scan8_result}\n`;
-        text += `${s.sec_scan9_name} = ${s.sec_scan9_result}\n`;
-        text += `${s.sec_scan10_name} = ${s.sec_scan10_result}\n\n`;
-        text += "Privacy Scans:\n";
-        text += `${s.priv_scan1_name} = ${s.priv_scan1_result}\n`;
-        text += `${s.priv_scan2_name} = ${s.priv_scan2_result}\n`;
-        text += `${s.priv_scan3_name} = ${s.priv_scan3_result}\n`;
-        text += `${s.priv_scan4_name} = ${s.priv_scan4_result}\n`;
-        text += `${s.priv_scan5_name} = ${s.priv_scan5_result}\n\n`;
-        text += `Final Score: ${s.final_score}/10`;
-        resultDiv.textContent = text;
-      } else {
-        resultDiv.textContent = 'No scan result available.';
-      }
-    });
-  });
-*/
 
-  // extension/popup.js
-  document.addEventListener('DOMContentLoaded', function () {
-    chrome.storage.local.get('lastScan', function (data) {
-      const scoreCircle = document.getElementById('scoreCircle');
+
+function updatePopup() {
+    chrome.storage.local.get(['activeTab', 'lastScan'], function(data) {
+      const activeTabUrl = data.activeTab;
+      const scanData = data.lastScan;
       const urlText = document.getElementById('urlText');
-
-      if (data.lastScan) {
-        // Update URL text
-        if (data.lastScan.url) {
-          urlText.textContent = `URL: ${data.lastScan.url}`;
-        } else {
-          urlText.textContent = "URL: Not available";
-        }
-
-        // Update score display
-        if (data.lastScan.final_score !== undefined) {
-          const finalScore = data.lastScan.final_score;
-          scoreCircle.textContent = finalScore;
-
-          // Set circle color based on score:
-          let bgColor;
-          if (finalScore >= 8) {
-            bgColor = '#4CAF50'; // green
-          } else if (finalScore >= 5) {
-            bgColor = '#FFC107'; // amber
-          } else {
-            bgColor = '#F44336'; // red
-          }
-          scoreCircle.style.backgroundColor = bgColor;
-        } else {
-          scoreCircle.textContent = '--';
-        }
+      const scoreCircle = document.getElementById('scoreCircle');
+      const spinner = document.getElementById('spinner');
+      const scoreText = document.getElementById('scoreText');
+      
+      // Update URL display with the active tab's URL.
+      if (activeTabUrl) {
+        urlText.textContent = `URL: ${activeTabUrl}`;
       } else {
         urlText.textContent = "URL: Not available";
-        scoreCircle.textContent = '--';
+      }
+      
+      // Check if scan data is available for the active tab.
+      if (scanData && scanData.url === activeTabUrl && scanData.final_score !== undefined) {
+        const finalScore = scanData.final_score;
+        scoreText.textContent = finalScore;
+        scoreText.style.display = 'block';
+        spinner.style.display = 'none';
+  
+        // Set the circle color based on the score.
+        let bgColor;
+        if (finalScore >= 8) {
+          bgColor = '#4CAF50'; // green
+        } else if (finalScore >= 5) {
+          bgColor = '#FFC107'; // amber
+        } else {
+          bgColor = '#F44336'; // red
+        }
+        scoreCircle.style.backgroundColor = bgColor;
+      } else {
+        // No scan data: show spinner.
+        scoreText.textContent = '';
+        scoreText.style.display = 'none';
+        spinner.style.display = 'block';
+        scoreCircle.style.backgroundColor = '#ccc';
       }
     });
-
-    // Navigate to the detailed pages on button clicks.
-    document.getElementById('securityBtn').addEventListener('click', function () {
-      window.location.href = 'security.html';
-    });
-
-    document.getElementById('privacyBtn').addEventListener('click', function () {
-      window.location.href = 'privacy.html';
-    });
-});
+  }
   
+  document.addEventListener('DOMContentLoaded', updatePopup);
+  
+  // Listen for changes to update the popup UI when activeTab or lastScan changes.
+  chrome.storage.onChanged.addListener(function(changes, area) {
+    if (area === 'local' && (changes.activeTab || changes.lastScan)) {
+      updatePopup();
+    }
+  });
+  
+  // Navigation buttons.
+  document.getElementById('securityBtn').addEventListener('click', function () {
+    window.location.href = 'security.html';
+  });
+  
+  document.getElementById('privacyBtn').addEventListener('click', function () {
+    window.location.href = 'privacy.html';
+  });

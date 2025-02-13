@@ -2,22 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HTTPS Scan - More Info 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Broken Authentication Scan - More Info</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-        .container { max-width: 600px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { color: #0077cc; }
-        p { font-size: 14px; }
-        .back-btn { display: inline-block; margin-top: 15px; padding: 8px 12px; background: #0077cc; color: white; border: none; border-radius: 5px; text-decoration: none; }
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background-color: #f4f4f4; 
+            line-height: 1.6;
+            color: #333;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 20px auto; 
+            background: #fff; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+        }
+        h1, h2, h3 { 
+            color: #0077cc; 
+        }
+        p { 
+            font-size: 16px; 
+            margin: 15px 0; 
+        }
+        ul { 
+            margin: 10px 20px; 
+            padding: 0; 
+        }
+        li { 
+            margin-bottom: 10px; 
+        }
+        a { 
+            color: #0077cc; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        .back-btn { 
+            display: inline-block; 
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            background: #0077cc; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            cursor: pointer; 
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>HTTPS Scan - More Info</h1>
-        <p>A low HTTPS score means the site is using outdated TLS versions or lacks HSTS, making it vulnerable to eavesdropping.</p>
-        <p>To improve security, ensure TLS 1.2 or higher is enforced and HSTS is enabled.</p>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Transport_Layer_Security" target="_blank">Read More on Mozilla Docs</a>
-        <br>
+        <h1>Broken Authentication Scan - Understanding Web Security</h1>
+        <p>This page explains broken authentication scans, what it means when a scan does not detect anything, how users can be exposed, and the scientific process behind how these scans work.</p>
+
+        <h2>What is Broken Authentication?</h2>
+        <p><strong>Broken authentication</strong> occurs when an application does not properly secure user credentials or session tokens, allowing attackers to gain unauthorized access.</p>
+        <p>Common authentication vulnerabilities include:</p>
+        <ul>
+            <li><strong>Weak Password Policies:</strong> Allowing short or predictable passwords.</li>
+            <li><strong>Credential Stuffing:</strong> Reusing passwords from previous breaches.</li>
+            <li><strong>Session Hijacking:</strong> Exposing session tokens in URLs or cookies without security flags.</li>
+            <li><strong>Brute-Force Attacks:</strong> Failing to limit login attempts, enabling password guessing.</li>
+            <li><strong>Lack of Multi-Factor Authentication (MFA):</strong> Relying solely on passwords for authentication.</li>
+        </ul>
+
+        <h2>What Happens When a Broken Authentication Scan Shows Nothing?</h2>
+        <p>If a scan does not detect broken authentication vulnerabilities, it may indicate:</p>
+        <ul>
+            <li>Passwords are properly hashed and stored securely.</li>
+            <li>Login mechanisms implement brute-force protection and rate limiting.</li>
+            <li>Session management uses secure cookies with <code>HttpOnly</code> and <code>Secure</code> flags.</li>
+            <li>Multi-Factor Authentication (MFA) is enforced to prevent account takeovers.</li>
+        </ul>
+        <p>However, some authentication flaws may still exist and may require manual testing, particularly logic-based vulnerabilities.</p>
+
+        <h2>How Users are Left Exposed Without Strong Authentication Protections</h2>
+        <p>Without proper authentication security, users may face the following risks:</p>
+        <ul>
+            <li><strong>Account Takeover:</strong> Attackers can steal credentials and gain control of user accounts.</li>
+            <li><strong>Identity Theft:</strong> Personal information can be accessed and used fraudulently.</li>
+            <li><strong>Financial Fraud:</strong> Weak authentication in banking or e-commerce sites can lead to stolen funds.</li>
+            <li><strong>Session Hijacking:</strong> Attackers can steal session tokens and impersonate users.</li>
+            <li><strong>Reputation Damage:</strong> Stolen accounts can be used for spam, phishing, or fraudulent transactions.</li>
+        </ul>
+
+        <h2>How to Protect Yourself from Authentication Attacks</h2>
+        <p>Users and website administrators can take the following steps to protect against authentication vulnerabilities:</p>
+        <ul>
+            <li><strong>Use Strong Passwords:</strong> Implement and enforce complex passwords that are at least 12-16 characters long.</li>
+            <li><strong>Enable Multi-Factor Authentication (MFA):</strong> Require users to authenticate using an additional factor like a mobile app or hardware token.</li>
+            <li><strong>Limit Login Attempts:</strong> Implement rate limiting to prevent brute-force attacks.</li>
+            <li><strong>Use Secure Session Management:</strong> Store session tokens in cookies with <code>Secure</code>, <code>HttpOnly</code>, and <code>SameSite</code> attributes.</li>
+            <li><strong>Hash and Salt Passwords:</strong> Store passwords using strong hashing algorithms like Argon2, bcrypt, or PBKDF2.</li>
+            <li><strong>Monitor Login Activity:</strong> Notify users of suspicious login attempts and allow them to revoke active sessions.</li>
+        </ul>
+
+        <h2>The Science Behind Broken Authentication Scanning</h2>
+        <p>Broken authentication scanners analyze web applications for weaknesses in authentication mechanisms. The process includes:</p>
+        <ul>
+            <li><strong>Testing Login Forms:</strong> The scanner submits various test cases to detect weak authentication.</li>
+            <li><strong>Checking Password Storage:</strong> It analyzes how passwords are stored (e.g., plaintext, hashed, or encrypted).</li>
+            <li><strong>Identifying Session Vulnerabilities:</strong> The scanner inspects cookies and URL parameters for session exposure risks.</li>
+            <li><strong>Brute-Force Attack Simulation:</strong> The scanner tests whether login attempts are rate-limited.</li>
+            <li><strong>Verifying MFA Enforcement:</strong> It checks if multi-factor authentication is required for sensitive actions.</li>
+        </ul>
+
+        <h2>Why Websites Should Implement Strong Authentication Security</h2>
+        <p>Strengthening authentication security helps prevent data breaches and improves user trust. Key reasons include:</p>
+        <ul>
+            <li><strong>Compliance with Security Standards:</strong> OWASP recommends secure authentication practices to protect user accounts.</li>
+            <li><strong>Protecting User Privacy:</strong> Strong authentication helps prevent unauthorized access to sensitive data.</li>
+            <li><strong>Reducing Fraud Risks:</strong> Secure authentication prevents unauthorized transactions and account takeovers.</li>
+            <li><strong>Enhancing User Confidence:</strong> Websites with strong authentication are more trusted by users.</li>
+        </ul>
+
+        <h2>Learn More</h2>
+        <p>For further reading on authentication security and best practices, check out these resources:</p>
+        <ul>
+            <li><a href="https://owasp.org/www-project-top-ten/2017/A2_2017-Broken_Authentication.html" target="_blank">OWASP - Broken Authentication</a></li>
+            <li><a href="https://www.nist.gov/itl/applied-cybersecurity/nist-initiatives/passwords" target="_blank">NIST - Password Security Guidelines</a></li>
+            <li><a href="https://www.cisa.gov/two-factor-authentication" target="_blank">CISA - Multi-Factor Authentication Guide</a></li>
+        </ul>
+
         <a href="javascript:window.close();" class="back-btn">Close</a>
     </div>
 </body>
