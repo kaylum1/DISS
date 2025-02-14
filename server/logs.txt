@@ -1,0 +1,12 @@
+
+5 feb - 10 change the whole structure as i could not add my own sql databse\
+11 - have my own sql database and have added\
+12 - reploshing different scans and have added privacy scans \
+13- adding info when there is a bad score - first will be red then gonna add info on it \
+14- added the setup of new tabs that have evern more information - more needs to be done \
+14 - help strcture be better, automated the server database and scans and now when going on new tabe upadted automatically, also only upadted database after a week\
+14- created the fram work to have tabs open for scan with poor result and now they need poplulating with information \
+\
+14 created an XAmap and DVWA enviroment for tesing the different scans work correctly\
+
+14 creating dumby websites to make sure that my websites works corretcly 

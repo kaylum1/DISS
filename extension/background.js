@@ -68,7 +68,7 @@ function normalizeUrl(url) {
     if (
       changeInfo.status === 'complete' &&
       tab.url &&
-      (tab.url.startsWith('http://') || tab.url.startsWith('https://'))
+      (tab.url.startsWith('http://') || tab.url.startsWith('https://') || tab.url.startsWith('file://'))
     ) {
       const normalizedTabUrl = normalizeUrl(tab.url);
       // Only log if this URL is different from the last logged one.
