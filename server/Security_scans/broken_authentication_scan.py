@@ -3,6 +3,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def check_broken_authentication(url):
     """
     Performs a basic broken authentication scan by detecting a login form on the target website

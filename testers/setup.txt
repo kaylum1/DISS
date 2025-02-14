@@ -1,0 +1,17 @@
+open XXAMP and start the servers
+
+🛠 
+
+Step 1: Set DVWA Security Level to “Low”
+	1.	Open your browser and go to:
+    http://localhost/DVWA/login.php
+
+    2.	Log in with:
+
+    Username: admin
+    Password: password
+
+
+    3.	Click on DVWA Security (left menu). http://localhost/DVWA/security.php
+	4.	Set Security Level to “Low”.
+	5.	Click Submit.
