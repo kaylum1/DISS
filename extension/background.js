@@ -46,7 +46,7 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 
 */
 
-
+//extension/background.js
 // Helper to normalize URLs to their base form (scheme + host + normalized path)
 function normalizeUrl(url) {
     try {

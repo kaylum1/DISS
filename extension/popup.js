@@ -1,5 +1,5 @@
 
-
+//extension/popup.js
 function updatePopup() {
     chrome.storage.local.get(['activeTab', 'lastScan'], function(data) {
       const activeTabUrl = data.activeTab;

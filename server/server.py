@@ -357,7 +357,7 @@ if __name__ == '__main__':
 
 '''
 
-
+#server/server.py
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from database import init_db, insert_log, get_all_logs, get_log_by_url
