@@ -1,0 +1,41 @@
+<!-- this is a script for the broekn authentication scan
+ Save the following code as insecure_login.html.
+Open it in your browser (double-click or open with file://).
+Run your check_broken_authentication() function against file:// or a local server.
+
+
+/Users/kaylumsmith/Desktop/"exeter uni"/"year 3"/"Individual Literature Review and Project (ECM3401"/"code in small section"/testers/insecure_login.html
+
+file:///Users/kaylumsmith/Desktop/exeter%20uni/year%203/Individual%20Literature%20Review%20and%20Project%20%28ECM3401%29/code%20in%20small%20section/testers/insecure_login.html
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insecure Login Page</title>
+</head>
+<body>
+    <h2>Insecure Login Form</h2>
+    
+    <!-- ❌ Insecure form: Uses GET instead of POST -->
+    <form action="/login" method="get">  
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        
+        <label for="password">Password:</label>
+        <!-- ❌ Autocomplete should be "off", but isn't -->
+        <input type="password" id="password" name="password">
+
+        <br><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <!-- ❌ No CSRF Token (No hidden input field for CSRF) -->
+    <!-- ❌ No CAPTCHA for bot protection -->
+
+</body>
+</html>
