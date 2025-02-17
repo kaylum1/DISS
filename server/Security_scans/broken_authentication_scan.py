@@ -104,6 +104,8 @@ def check_broken_authentication(url):
 
 '''
 
+#server/security_scans/broken_authentication_scan.py
+
 
 import requests
 from bs4 import BeautifulSoup

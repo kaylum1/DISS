@@ -1,0 +1,55 @@
+<!--http://localhost:8000/vulnerable-sql-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Insecure SQL Injection Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fff3cd;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 2px solid #ffa500;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+      }
+      h2 {
+        text-align: center;
+        color: #cc6600;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+      }
+      input[type="submit"] {
+        background-color: #cc6600;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>SQL Injection Vulnerable Login</h2>
+      <!-- This login form is intentionally insecure:
+           - Uses GET instead of POST
+           - No input validation or escaping
+           - Query parameters are passed directly -->
+      <form action="/vulnerable-sql" method="get">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="password" placeholder="Password">
+        <input type="submit" value="Login">
+      </form>
+    </div>
+  </body>
+</html>

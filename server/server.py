@@ -1240,11 +1240,55 @@ def log_access(request: Request, normalized_url: str):
     msg = f'{client} - "{request.method} {request.url}" 200 OK - {normalized_url}'
     custom_logger.info(msg)
 
+
+
+'''this section and below deals with all the termpltes folder html pages'''    
+
 # Updated /logs endpoint to render the logs HTML template.
 @app.get("/logs", response_class=HTMLResponse)
 async def view_logs(request: Request):
     logs_data = get_all_logs()
     return templates.TemplateResponse("logs.html", {"request": request, "logs": logs_data})
+
+
+@app.get("/login", response_class=HTMLResponse)
+async def insecure_login(request: Request):
+    """
+    Serve an intentionally insecure login page that is flagged by the broken authentication scan.
+    """
+    return templates.TemplateResponse("insecure_page.html", {"request": request})
+
+
+@app.get("/vulnerable-sql", response_class=HTMLResponse)
+async def sql_injection_page(request: Request):
+    """
+    Serve an intentionally insecure SQL injection page that will fail the SQL Injection Scan.
+    """
+    return templates.TemplateResponse("sql_injection_page.html", {"request": request})
+
+
+
+@app.get("/vulnerable-xss", response_class=HTMLResponse)
+async def xss_vulnerable_page(request: Request):
+    """Serve an intentionally vulnerable XSS page."""
+    return templates.TemplateResponse("xss_vulnerable_page.html", {"request": request})
+
+
+
+@app.get("/vulnerable-directory", response_class=HTMLResponse)
+async def directory_listing_page(request: Request):
+    """Serve a fake directory listing page."""
+    return templates.TemplateResponse("directory_listing_page.html", {"request": request})
+
+@app.get("/vulnerable-redirect", response_class=HTMLResponse)
+async def open_redirect_page(request: Request):
+    """Serve an intentionally vulnerable open redirect page."""
+    return templates.TemplateResponse("open_redirect_page.html", {"request": request})
+
+
+
+
+
 
 if __name__ == '__main__':
     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
