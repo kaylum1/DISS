@@ -1,5 +1,5 @@
 
-
+<!--
 <!DOCTYPE html>
 <html>
   <head>
@@ -70,17 +70,109 @@
   </head>
   <body>
     <div class="container">
-      <!-- URL Display -->
+      <-!-- URL Display --
       <div id="urlText" class="url-text">URL: Loading...</div>
-      <!-- Big score circle with spinner and score text -->
+      <-!-- Big score circle with spinner and score text --
       <div class="score-circle" id="scoreCircle">
         <div class="spinner" id="spinner"></div>
         <span id="scoreText"></span>
       </div>
-      <!-- Two buttons for more info -->
+      <-!-- Two buttons for more info --
       <div class="button-container">
         <button id="securityBtn">Security Scan Info</button>
         <button id="privacyBtn">Privacy Scan Info</button>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Scan Summary</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      .container {
+        width: 320px;
+        margin: 20px auto;
+        text-align: center;
+      }
+      .score-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background-color: #ccc; /* default; will be updated based on score */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: bold;
+        margin: 0 auto 20px;
+        border: 5px solid #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-top-color: #09f;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      #scoreText {
+        display: none;
+      }
+      .button-container {
+        margin-top: 20px;
+      }
+      button {
+        background-color: #0077cc;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        margin: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+      button:hover {
+        background-color: #005fa3;
+      }
+      /* Gear button styling */
+      #settingsBtn {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- URL Display -->
+      <div id="urlText" class="url-text">URL: Loading...</div>
+      <!-- Score Circle -->
+      <div class="score-circle" id="scoreCircle">
+        <div class="spinner" id="spinner"></div>
+        <span id="scoreText"></span>
+      </div>
+      <!-- Navigation Buttons -->
+      <div class="button-container">
+        <button id="securityBtn">Security Scan Info</button>
+        <button id="privacyBtn">Privacy Scan Info</button>
+        <button id="settingsBtn">⚙️</button>
       </div>
     </div>
     <script src="popup.js"></script>
