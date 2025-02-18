@@ -1021,8 +1021,8 @@ if __name__ == '__main__':
 
 
 
-#adding a logs setup
 
+#server/server.py
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse

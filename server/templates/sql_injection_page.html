@@ -1,55 +1,52 @@
 <!--http://localhost:8000/vulnerable-sql-->
-
+<!-- Intentionally missing DOCTYPE to trigger HTML validation errors -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Insecure SQL Injection Page</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #fff3cd;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 20px;
-        border: 2px solid #ffa500;
-        background-color: #fff;
-        box-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
-      }
-      h2 {
-        text-align: center;
-        color: #cc6600;
-      }
-      input {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        font-size: 16px;
-      }
-      input[type="submit"] {
-        background-color: #cc6600;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h2>SQL Injection Vulnerable Login</h2>
-      <!-- This login form is intentionally insecure:
-           - Uses GET instead of POST
-           - No input validation or escaping
-           - Query parameters are passed directly -->
-      <form action="/vulnerable-sql" method="get">
-        <input type="text" name="username" placeholder="Username">
-        <input type="text" name="password" placeholder="Password">
-        <input type="submit" value="Login">
-      </form>
-    </div>
-  </body>
+<head>
+    <title>Insecure Webpage</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-inline' 'unsafe-eval' *">
+    <meta http-equiv="X-Frame-Options" content="ALLOW">
+    <script src="https://code.jquery.com/jquery-1.4.2.min.js"></script> <!-- Old version vulnerable to XSS -->
+</head>
+<body>
+    <h1>Welcome to this very insecure webpage</h1>
+    
+    <form action="http://example.com/login" method="POST"> <!-- No HTTPS, insecure form submission -->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br>
+        <button type="submit">Login</button>
+    </form>
+    
+    <script>
+        document.write("<p>This page has no security at all!</p>"); //<!-- Use of document.write -->
+        localStorage.setItem("password", "123456"); //<!-- Storing sensitive data in localStorage -->
+    </script>
+    
+    <script>
+        // insecure.js
+
+        // Use of eval (vulnerable to code injection attacks)
+        var userInput = "alert('This site is insecure!');";
+        eval(userInput);
+
+        // Sending credentials over an unencrypted connection
+        fetch('http://example.com/api/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                username: 'admin',
+                password: 'password123'
+            })
+        });
+
+        // Open redirects vulnerability
+        window.location.href = 'http://test.com';
+
+        // XMLHttpRequest without CORS protection
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://example.com/data", true);
+        xhr.send();
+    </script> <!-- Load external insecure script -->
+</body>
 </html>

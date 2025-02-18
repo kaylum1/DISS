@@ -10,3 +10,7 @@
 14 created an XAmap and DVWA enviroment for tesing the different scans work correctly\
 
 14 creating dumby websites to make sure that my websites works corretcly 
+15. created a templates folder and not easier tot recaret webistes with seducirty issues 
+
+
+17 i have addeed features such as vpn and ad blocker 
