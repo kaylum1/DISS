@@ -14,3 +14,14 @@
 
 
 17 i have addeed features such as vpn and ad blocker 
+
+
+18 created a new fully dledge scan and had to reasbbombe the database to first and make sure they wrre paossive so they are legal
+
+19 gave functnaility to the cookies and and ad blocker 
+
+20 created fake webpage that will purppsley fail all the scan 
+
+21 cereated the new educatoanla
+
+22 created a new scaoring matrix that will allow me to adjust the weights of the different scans 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DNT Scan - More Info</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            padding: 20px; 
+            background-color: #f4f4f4; 
+            line-height: 1.6;
+            color: #333;
+        }
+        .container { 
+            max-width: 800px; 
+            margin: 20px auto; 
+            background: #fff; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+        }
+        h1, h2, h3 { 
+            color: #0077cc; 
+        }
+        p { 
+            font-size: 16px; 
+            margin: 15px 0; 
+        }
+        ul { 
+            margin: 10px 20px; 
+            padding: 0; 
+        }
+        li { 
+            margin-bottom: 10px; 
+        }
+        a { 
+            color: #0077cc; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        .back-btn { 
+            display: inline-block; 
+            margin-top: 20px; 
+            padding: 10px 15px; 
+            background: #0077cc; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            text-decoration: none; 
+            cursor: pointer; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DNT Scan - Understanding Do Not Track</h1>
+        <p>This page explains DNT (Do Not Track) scans, what it means when a scan does not detect any misconfigurations, how users and organizations can be affected when privacy preferences are ignored, and the process behind how these scans work.</p>
+
+        <h2>What is a DNT Scan?</h2>
+        <p><strong>DNT Scan</strong> is a security and privacy assessment that checks whether a website or web application respects the "Do Not Track" (DNT) header sent by users' browsers. The scan examines if tracking mechanisms, analytics, or third-party services honor the user's request not to be tracked.</p>
+        <p>The scan typically focuses on:</p>
+        <ul>
+            <li><strong>Header Verification:</strong> Checking for the presence and proper handling of the DNT header in HTTP requests.</li>
+            <li><strong>Tracking Behavior:</strong> Identifying whether tracking scripts or cookies are deployed despite the DNT signal.</li>
+            <li><strong>Privacy Policy Alignment:</strong> Ensuring that the website’s privacy practices align with its DNT implementation.</li>
+        </ul>
+
+        <h2>What Happens When a DNT Scan Shows Nothing?</h2>
+        <p>If a DNT scan does not detect any issues, it may indicate:</p>
+        <ul>
+            <li>The website correctly processes the DNT header and refrains from tracking users who have enabled it.</li>
+            <li>No conflicting tracking scripts or third-party services override the user's DNT preference.</li>
+            <li>The site's privacy policies are consistent with its technical implementation.</li>
+            <li>Some nuances or legacy tracking mechanisms might not be captured by automated scans.</li>
+        </ul>
+        <p>While a clean scan result is positive, regular reviews are recommended to ensure ongoing compliance with evolving privacy standards.</p>
+
+        <h2>How Users and Organizations are Affected When DNT is Not Honored</h2>
+        <p>If a website fails to respect the DNT signal, the following risks may arise:</p>
+        <ul>
+            <li><strong>Privacy Intrusions:</strong> Users’ browsing behaviors may be tracked without their consent.</li>
+            <li><strong>Unwanted Profiling:</strong> Data collected can be used to create detailed profiles for targeted advertising.</li>
+            <li><strong>Regulatory Concerns:</strong> Non-compliance with privacy preferences may lead to legal and reputational issues.</li>
+            <li><strong>Eroded Trust:</strong> Users may lose confidence in a website that disregards their privacy settings.</li>
+        </ul>
+
+        <h2>How to Enhance Privacy Through DNT Implementation</h2>
+        <p>To improve user privacy and honor DNT preferences, consider these best practices:</p>
+        <ul>
+            <li><strong>Implement DNT Support:</strong> Ensure that your website checks for and respects the DNT header in all interactions.</li>
+            <li><strong>Review Third-Party Scripts:</strong> Audit all embedded services to verify that they comply with DNT requests.</li>
+            <li><strong>Update Privacy Policies:</strong> Clearly communicate how user data is handled and how DNT preferences are respected.</li>
+            <li><strong>Regular Testing:</strong> Periodically perform DNT scans to identify and address any deviations.</li>
+        </ul>
+
+        <h2>The Science Behind DNT Scanning</h2>
+        <p>DNT scanners work by simulating requests from browsers with the DNT header enabled and analyzing the responses to determine if tracking is disabled. The process includes:</p>
+        <ul>
+            <li><strong>Header Injection:</strong> Adding the DNT header to simulated HTTP requests.</li>
+            <li><strong>Response Analysis:</strong> Examining responses for tracking scripts, cookies, or other identifiers that may indicate tracking.</li>
+            <li><strong>Comparative Testing:</strong> Comparing results with and without the DNT header to identify discrepancies.</li>
+            <li><strong>Compliance Reporting:</strong> Generating detailed reports that highlight any non-compliance or privacy issues.</li>
+        </ul>
+
+        <h2>Why Respecting DNT is Essential</h2>
+        <p>Honoring the DNT signal is crucial for:</p>
+        <ul>
+            <li><strong>Protecting User Privacy:</strong> Ensuring that users maintain control over their personal data.</li>
+            <li><strong>Building Trust:</strong> Demonstrating a commitment to user privacy strengthens the relationship with your audience.</li>
+            <li><strong>Regulatory Compliance:</strong> Aligning with evolving privacy laws and best practices in data protection.</li>
+            <li><strong>Ethical Data Practices:</strong> Upholding user rights and promoting transparency in data collection.</li>
+        </ul>
+
+        <h2>Learn More</h2>
+        <p>For additional insights on DNT and privacy best practices, explore these resources:</p>
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/DNT" target="_blank">MDN - DNT Header</a></li>
+            <li><a href="https://www.eff.org/issues/do-not-track" target="_blank">Electronic Frontier Foundation - Do Not Track</a></li>
+            <li><a href="https://www.w3.org/TR/tracking-protection/" target="_blank">W3C - Tracking Protection</a></li>
+        </ul>
+
+        <a href="javascript:window.close();" class="back-btn">Close</a>
+    </div>
+</body>
+</html>

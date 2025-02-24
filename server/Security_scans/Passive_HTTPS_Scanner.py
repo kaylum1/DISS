@@ -1,11 +1,13 @@
 import requests
+from datetime import datetime
+from dateutil import parser
 
-def scan_url(url):
+def analyze_https_security(url):
     """
-    Checks HTTPS security and returns a score from 1 to 10 based on:
-    - TLS version (4 points max)
-    - Certificate validity (3 points max)
-    - HSTS presence (3 points max)
+    Checks HTTPS security and returns a tuple (score, details) based on:
+    - TLS version (up to 4 points)
+    - Certificate validity (up to 3 points)
+    - HSTS presence (up to 3 points)
     """
     try:
         response = requests.get(url, timeout=10)
@@ -14,11 +16,11 @@ def scan_url(url):
 
         # Check if HTTPS is used
         if not url.startswith("https://"):
-            return "HTTPS Scan score: 1/10 (Website does not use HTTPS)"
+            return 1, ["Website does not use HTTPS"]
 
         score += 2  # Base score for using HTTPS
 
-        # Check TLS version (requires 'requests' with SSL details)
+        # Check TLS version (requires access to SSL details)
         try:
             tls_version = response.raw.version
             if tls_version == 3:  # TLS 1.2
@@ -35,12 +37,8 @@ def scan_url(url):
         # Check Certificate Validity
         cert_expiry = response.raw._connection.sock.getpeercert().get('notAfter', '')
         if cert_expiry:
-            from datetime import datetime
-            from dateutil import parser
-
             expiry_date = parser.parse(cert_expiry)
             days_remaining = (expiry_date - datetime.utcnow()).days
-
             if days_remaining > 180:
                 score += 3
                 details.append("Certificate validity > 180 days")
@@ -64,7 +62,7 @@ def scan_url(url):
 
         # Clamp final score between 1 and 10
         score = max(1, min(10, score))
-        return f"HTTPS Scan score: {score}/10 ({'; '.join(details)})"
+        return score, details
 
     except Exception as e:
-        return f"Error performing HTTPS scan: {str(e)}"
+        return 1, [f"Error performing HTTPS scan: {str(e)}"]

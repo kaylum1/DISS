@@ -1,3 +1,5 @@
+extension/settings.html
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -103,7 +105,7 @@
         </label>
       </div>
       <div class="setting-item">
-        <span class="setting-name">VPN</span>
+        <span class="setting-name">VPN (unavailable)</span>
         <label class="switch">
           <input type="checkbox" id="vpnToggle">
           <span class="slider"></span>
@@ -114,3 +116,44 @@
     <script src="settings.js"></script>
   </body>
 </html>
+
+
+
+
+
+
+<!--
+web page to test the ad blocker 
+https://www.freeconvert.com/mp3-converter
+
+
+https://www.dailymail.co.uk/tvshowbiz/index.html
+
+
+to add more ad blocker if they come up go to the backend.js 
+
+{
+    id: 10,
+    priority: 1,
+    action: { type: "block" },
+    condition: {
+      urlFilter: "ajs-assets.ftstatic.com",
+      resourceTypes: ["script"]
+    }
+  }
+
+
+  inspect the the ad and find url and add it
+
+
+
+
+
+
+  cookie decliner seem to be wokring 
+
+  https://www.imdb.com/ works with cookies and ad blocker 
+
+
+  https://www.currys.co.uk/ works with cookies and ad blocker 
+-->
